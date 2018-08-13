@@ -1,0 +1,57 @@
+.parent {
+    position: relative;
+}
+
+#clock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    margin-top: -250px; /* account for padding and border if not using box-sizing: border-box; */
+    margin-left: -250px;
+    
+    // /* styles for everything in the clock */
+    // stroke: black;
+    // /* black lines */
+    stroke-linecap: round;
+    // /* with rounded ends */
+    // fill: #eef;
+}
+
+#face { 
+}
+
+/* clock face outline */
+#ticks { stroke-width: 2; }
+
+/* lines that mark each hour */
+#hourhand {stroke-width: 5px;}
+
+/* wide hour hand */
+#minutehand {
+    stroke-width: 3px;
+    -webkit-animation: rotation 1s infinite linear;
+
+} /* narrow minute hand */
+
+@-webkit-keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform-origin: 50%;
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+        transform-origin: 50%;
+    }
+}
+
+
+
+#secondhand {stroke-width: 1px;}
+
+#numbers {
+    /* how to draw the numbers */
+    font-family: sans-serif; font-size: 7pt; font-weight: bold;
+    text-anchor: middle; stroke: none; fill: black;
+}
