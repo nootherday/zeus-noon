@@ -3,24 +3,72 @@ html
     head
         meta(charset="UTF-8")
         link(rel="stylesheet", type="text/css", href="static/css/zeus-noon.css")
-        script(src="//code.jquery.com/jquery-3.3.1.min.js", integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=", crossorigin="anonymous")
+        script(src="//code.jquery.com/jquery-3.3.1.min.js")
+        script(src="//cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js")
+        script(src="static/js/humanize.js")        
         script(src="static/js/zeus-noon.js")
 
     body
         svg#clock(viewBox="0 0 1000 1000")
             defs
-                radialGradient#gradient1
-                    stop(offset="10%" stop-color="gold")
-                    stop(offset="95%" stop-color="green")
+                radialGradient#myGradient1
+                    stop(offset="20%", stop-color="black", stop-opacity="0")
+                    stop(offset="100%" stop-color="black", stop-opacity="0.5")
 
-            rect#face(x="50", y="50", width="900", height="900", fill="url(#gradient1)", rx="50", ry="50", stroke="black", stroke-width="40")
-            line#hand(x1="500", y1="550", x2="500", y2="200", stroke="black")
+            defs
+                linearGradient#myGradient2(x1="0%", y1="0%", x2="0%", y2="100%")
+                    stop(offset="0%", stop-color="black", stop-opacity="0.1")
+                    stop(offset="5%", stop-color="black", stop-opacity="0.1")                    
+                    stop(offset="5%", stop-color="gray", stop-opacity="0.1")
+                    stop(offset="10%", stop-color="gray", stop-opacity="0.1")                    
+                    stop(offset="10%", stop-color="black", stop-opacity="0.1")
+                    stop(offset="15%", stop-color="black", stop-opacity="0.1")                    
+                    stop(offset="15%", stop-color="gray", stop-opacity="0.1")
+                    stop(offset="20%", stop-color="gray", stop-opacity="0.1")                    
+                    stop(offset="20%", stop-color="black", stop-opacity="0.1")
+                    stop(offset="25%", stop-color="black", stop-opacity="0.1")
+                    stop(offset="25%", stop-color="gray", stop-opacity="0.1")
+                    stop(offset="30%", stop-color="gray", stop-opacity="0.1")                    
+                    stop(offset="30%", stop-color="black", stop-opacity="0.1")
+                    stop(offset="35%", stop-color="black", stop-opacity="0.1")
+                    stop(offset="35%", stop-color="gray", stop-opacity="0.1")
+                    stop(offset="40%", stop-color="gray", stop-opacity="0.1")                    
+                    stop(offset="40%", stop-color="black", stop-opacity="0.1")
+                    stop(offset="45%", stop-color="black", stop-opacity="0.1")
+                    stop(offset="45%", stop-color="gray", stop-opacity="0.1")
+                    stop(offset="50%", stop-color="gray", stop-opacity="0.1")                    
+                    stop(offset="50%", stop-color="black", stop-opacity="0.1")
+                    stop(offset="55%", stop-color="black", stop-opacity="0.1")                    
+                    stop(offset="55%", stop-color="gray", stop-opacity="0.1")
+                    stop(offset="60%", stop-color="gray", stop-opacity="0.1")                    
+                    stop(offset="60%", stop-color="black", stop-opacity="0.1")
+                    stop(offset="65%", stop-color="black", stop-opacity="0.1")                    
+                    stop(offset="65%", stop-color="gray", stop-opacity="0.1")
+                    stop(offset="70%", stop-color="gray", stop-opacity="0.1")                    
+                    stop(offset="70%", stop-color="black", stop-opacity="0.1")
+                    stop(offset="75%", stop-color="black", stop-opacity="0.1")
+                    stop(offset="75%", stop-color="gray", stop-opacity="0.1")
+                    stop(offset="80%", stop-color="gray", stop-opacity="0.1")                    
+                    stop(offset="80%", stop-color="black", stop-opacity="0.1")
+                    stop(offset="85%", stop-color="black", stop-opacity="0.1")
+                    stop(offset="85%", stop-color="gray", stop-opacity="0.1")
+                    stop(offset="90%", stop-color="gray", stop-opacity="0.1")                                      
+                    stop(offset="90%", stop-color="black", stop-opacity="0.1")
+                    stop(offset="95%", stop-color="black", stop-opacity="0.1")
+                    stop(offset="95%", stop-color="gray", stop-opacity="0.1")
+                    stop(offset="100%", stop-color="gray", stop-opacity="0.1")                    
+                                      
+            rect#face(x="50", y="50", width="900", height="900", rx="50", ry="50", stroke="black", stroke-width="40")
+            rect(x="50", y="50", width="900", height="900", fill="url(#myGradient2)", rx="50", ry="50", stroke="black", stroke-width="40")
+            rect(x="50", y="50", width="900", height="900", fill="url(#myGradient1)", rx="50", ry="50", stroke="black", stroke-width="40")
+            
+            line#hand(x1="500", y1="550", x2="500", y2="200")
             
             g#texts
-                text.number(x="50%", y="480px") 121,398 k
-                text.name(x="50%", y="580px") beers
-                text.detail(x="50%", y="650px") have been drunk in the US since noon
-
+                text.number(x="50%", y="410px")
+                text.char(x="50%", y="480px")
+                text.name(x="50%", y="580px")
+                text.detail(x="50%", y="650px")
             //- g#ticks
                 line(x1='250', y1='0', x2='250', y2='100', stroke-width="3")
                 //- line(x1='72.50' y1='11.03' x2='70.00' y2='15.36')
@@ -34,3 +82,22 @@ html
                 //- line(x1='5.000' y1='50.00' x2='10.00' y2='50.00')
                 //- line(x1='11.03' y1='27.50' x2='15.36' y2='30.00')
                 //- line(x1='27.50' y1='11.03' x2='30.00' y2='15.36')
+
+
+//- <svg xmlns="http://www.w3.org/2000/svg" width="200px" height="200px">
+//-   <defs>
+//-     <linearGradient id="lgrad" x1="100%" y1="50%" x2="0%" y2="50%">
+//-       <stop offset="0" stop-color="black" />
+//-       <stop offset="1" stop-color="white" />
+//-     </linearGradient>
+//-     <mask id="myMask" x="0" y="0" width="100%" height="100%">
+//-       <rect x="0" y="0" width="100%" height="100%" fill="url(#lgrad)" />
+//-     </mask>
+//-     <text x="100" y="120" text-anchor="middle" id="myText" font-size="50">Hello</text>
+//-   </defs>
+//-   <g mask="url(#myMask)">
+//-     <use xlink:href=" #myText" transform="translate(0,-50) " fill="red " />
+//-     <use xlink:href="#myText" transform="translate(0,0)" fill="green"  />
+//-     <use xlink:href="#myText" transform="translate(0,50)" fill="blue" />
+//-   </g>
+//- </svg>

@@ -22,15 +22,21 @@
 
 #hand {
     stroke-width: 3px;
+    opacity: 0.8;
+
     // animation: rotation 1s infinite linear;
 }
 
 #texts {
-    fill: white;
+    // fill: white;
     text-anchor: middle;
-
+    opacity: 0.8;
     .number { 
         font: bold 130px sans-serif; 
+    }
+
+    .char {
+        font: bold 60px sans-serif;
     }
 
     .name { 

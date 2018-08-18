@@ -1,15 +1,59 @@
-var CLOCK_UPDATE_INTERVAL_IN_SECONDS = 10 * 1000;
-
 var updateNumberInterval = null;
 
-function humanizeNumber(v) {
-    return v.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
 
 function updateNumber(data) {
     var tsdiff = new Date().getTime() / 1000 - data.base_timestamp;
     var number = Math.round(data.base_number + tsdiff / data.period_in_seconds);
-    $('#texts .number').html(humanizeNumber(number));
+    $('#texts .number').html(Humanize.intcomma(number));
+    $('#texts .char').html(Humanize.toHangeul(number));
+}
+
+function updateTheme() {
+    var themes = [
+        {
+            face: '#99e6ff',
+            text: '#000000',
+            tick: '#ffffff'
+        },
+        {
+            face: '#3333ff',
+            text: '#ffffff',
+            tick: '#000000'
+        },
+        {
+            face: '#66ffb3',
+            text: '#ffffff',
+            tick: '#000000'
+        },
+        {
+            face: '#7979d2',
+            text: '#ffffff',
+            tick: '#000000'
+        },
+        {
+            face: 'yellow',
+            text: '#000000',
+            tick: '#ffffff'
+        },
+        {
+            face: '#99e699',
+            text: '#ffffff',
+            tick: '#000000'
+        },
+        {
+            face: '#ffccff',
+            text: '#000000',
+            tick: '#ffffff'
+        }
+    ];
+
+    var theme = _.sample(themes);
+
+    // theme = themes[0];
+
+    $("#face").attr("fill", theme.face);
+    $("#texts text").attr("fill", theme.text);
+    $("#hand").attr("stroke", theme.tick); 
 }
 
 // function updateData(data) {
@@ -41,18 +85,21 @@ function updateClock() {
             updateNumber(data);
         }, data.period_in_seconds * 1000);
 
-        console.log('rotation ' + data.period_in_seconds + 's infinite linear');
+        // console.log('rotation ' + data.period_in_seconds + 's infinite linear');
 
         $('#hand').css('animation', 'none');
-
         $('#hand').css('animation', 'rotation ' + data.period_in_seconds + 's infinite linear');
+        
         $('#texts .name').html(data.name);
         $('#texts .detail').html(data.detail);
+
+        updateTheme();
+
+        setTimeout(updateClock, data.refresh_duration_in_seconds * 1000);
     });
 }
 
 $(function() {
     $.ajaxSetup({ cache: false });
-    setInterval(updateClock, CLOCK_UPDATE_INTERVAL_IN_SECONDS);
     updateClock();
 });
