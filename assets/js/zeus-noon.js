@@ -1,11 +1,13 @@
 var updateNumberInterval = null;
+var audio = new Audio('/static/mp3/tick.mp3');
 
-
-function updateNumber(data) {
+function updateNumber(data, silent) {
     var tsdiff = new Date().getTime() / 1000 - data.base_timestamp;
     var number = Math.round(data.base_number + tsdiff / data.period_in_seconds);
     $('#texts .number').html(Humanize.intcomma(number));
     $('#texts .char').html(Humanize.toHangeul(number));
+
+    !silent && audio.play();
 }
 
 function updateTheme() {
@@ -80,20 +82,23 @@ var lastData;
 function updateClock() {
     $.getJSON("/api/stat/random", function(data){
         updateNumberInterval && clearInterval(updateNumberInterval);
-        updateNumber(data); 
+        updateNumber(data, true); 
         updateNumberInterval = setInterval(function(){
             updateNumber(data);
         }, data.period_in_seconds * 1000);
 
         // console.log('rotation ' + data.period_in_seconds + 's infinite linear');
 
-        $('#hand').css('animation', 'none');
+        $('#hand').remove();
+        $('<line id="hand" x1="500" y1="550" x2="500" y2="200"></line>').insertBefore('#texts');
         $('#hand').css('animation', 'rotation ' + data.period_in_seconds + 's infinite linear');
         
         $('#texts .name').html(data.name);
         $('#texts .detail').html(data.detail);
 
         updateTheme();
+
+        $('#clock').html($('#clock').html());
 
         setTimeout(updateClock, data.refresh_duration_in_seconds * 1000);
     });

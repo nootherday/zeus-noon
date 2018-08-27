@@ -35,9 +35,17 @@ gulp.task('build:js', ['clean'], function(done){
         .on('end', done);
 });
 
+gulp.task('build:mp3', ['clean'], function(done){
+    gulp.src([
+            './assets/mp3/*.mp3'
+        ])
+        .pipe(gulp.dest('./build/mp3'))
+        .on('end', done);
+});
+
 gulp.task('watch', ['build'], function() {
     gulp.watch(['./assets/**/*'], ['build']);
 });
 
-gulp.task('build', [ 'build:js', 'build:pug', 'build:sass']);
+gulp.task('build', [ 'build:mp3', 'build:js', 'build:pug', 'build:sass']);
 gulp.task('default', ['build']);
