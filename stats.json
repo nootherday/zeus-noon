@@ -1,18 +1,70 @@
 {
     "stats": [
         {
-            "name": "테스트",
-            "unit": "명",
-            "number": "5132",
-            "period_in_seconds": "11",
-            "detail": "테스트에 필요한 숫자"
+            "name": "일",
+            "base_number": 0,
+            "base_timestamp": 1373479200,
+            "period_in_seconds": 86400,
+            "detail": "가 태어난지",
+            "refresh_duration_in_seconds": 10
         },
         {
-            "name": "테스트2",
-            "unit": "km",
-            "number": "25132",
-            "period_in_seconds": "3",
-            "detail": "테스트에 필요한 dssddc 숫자"
+            "name": "시간",
+            "base_number": 0,
+            "base_timestamp": 1373479200,
+            "period_in_seconds": 3600,
+            "detail": "가 태어난지",
+            "refresh_duration_in_seconds": 15
+        },
+        {
+            "name": "분",
+            "base_number": 0,
+            "base_timestamp": 1373479200,
+            "period_in_seconds": 60,
+            "detail": "가 태어난지",
+            "refresh_duration_in_seconds": 20
+        },
+        {
+            "name": "초",
+            "base_number": 0,
+            "base_timestamp": 1373479200,
+            "period_in_seconds": 1,
+            "detail": "가 태어난지",
+            "refresh_duration_in_seconds": 25
+        },
+
+
+        {
+            "name": "일",
+            "base_number": 0,
+            "base_timestamp": 1520013600,
+            "period_in_seconds": 86400,
+            "detail": "가 태어난지",
+            "refresh_duration_in_seconds": 10
+        },
+        {
+            "name": "시간",
+            "base_number": 0,
+            "base_timestamp": 1520013600,
+            "period_in_seconds": 3600,
+            "detail": "가 태어난지",
+            "refresh_duration_in_seconds": 15
+        },
+        {
+            "name": "분",
+            "base_number": 0,
+            "base_timestamp": 1520013600,
+            "period_in_seconds": 60,
+            "detail": "가 태어난지",
+            "refresh_duration_in_seconds": 20
+        },
+        {
+            "name": "초",
+            "base_number": 0,
+            "base_timestamp": 1520013600,
+            "period_in_seconds": 1,
+            "detail": "가 태어난지",
+            "refresh_duration_in_seconds": 25
         }
     ]
 }
